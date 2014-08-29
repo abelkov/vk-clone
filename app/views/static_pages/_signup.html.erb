@@ -1,0 +1,11 @@
+<div id="signup">
+	<%= form_for @user do |f| %>
+		<%= f.text_field :first_name, placeholder: "Your first name" %>
+		<%= f.text_field :last_name, placeholder: "Your last name" %>
+		<%= f.text_field :email, placeholder: "Your email" %>
+		<%= f.password_field :password, placeholder: "Your password" %>
+		<%= f.password_field :password_confirmation,
+		                     placeholder: "Confirm your password" %>
+		<%= f.submit "Sign up \u25B6", class: "btn btn-primary" %>
+	<% end %>
+</div>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= yield(:title) %></title>
+  <%= favicon_link_tag %>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="container">
+		<div id="page">
+
+		  <div class="row">
+
+				<%= render 'layouts/header' %>
+
+			</div>
+
+			<div class="row">
+			  <div class="span3">
+					<%= render 'layouts/sidebar' %>
+				</div>
+				<div class="span9">
+					<%= yield %>
+					<%= render 'layouts/footer' %>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</body>
+</html>

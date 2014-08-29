@@ -1,0 +1,35 @@
+<% provide(:title, "Welcome! | VK") %>
+<% content_for :sidebar do %>
+	<%= render 'login' %>
+<% end %>
+
+<div id="page-body">
+
+	<div class="welcome-wrap">
+		<div class="welcome">
+			<h1>Welcome!</h1>
+		</div>
+	</div>
+
+	<div class="content">
+		<p>
+			<b>VK</b> is the largest European social network
+		   with more than a <b>100 million</b> active users.
+		 </p>
+
+		<h2>Sign up for VK</h2>
+
+		<hr>
+
+		<div class="row">
+		  <div class="span3 offset3">
+				<%= render 'signup' %>
+			</div>
+		</div>
+
+
+			<%= render 'description' %>
+
+	</div>
+
+</div>
