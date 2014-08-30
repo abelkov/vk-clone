@@ -1,12 +1,21 @@
 <div id="description">
 	<h2>What can you do on VK?</h2>
 	<hr>
-	<ul>
-		<li>Find people with whom you've studied, worked or met on vacation.</li>
-		<li>Learn more about people around you and make new friends.</li>
-		<li>Stay in touch with loved ones.</li>
+	<ul id="features">
+		<li><span>Find people with whom you've studied, worked or met on vacation.</span></li>
+		<li><span>Learn more about people around you and make new friends.</span></li>
+		<li><span>Stay in touch with loved ones.</span></li>
 	</ul>
-	<%= image_tag "description/prof_vk_1.png", size: "132x100", alt: "Profile page" %>
-	<%= image_tag "description/news_vk_1.png", size: "132x100", alt: "News page" %>
-	<%= image_tag "description/dial_vk_1.png", size: "132x100", alt: "Messages page" %>
+
+	<div id="pictures">
+		<div class="desc-picture">
+			<%= image_tag "description/prof_vk_1.png", size: "132x100", alt: "Profile page" %>
+		</div>
+		<div class="desc-picture">
+			<%= image_tag "description/news_vk_1.png", size: "132x100", alt: "News page" %>
+		</div>
+		<div class="desc-picture">
+			<%= image_tag "description/dial_vk_1.png", size: "132x100", alt: "Messages page" %>
+		</div>
+	</div>
 </div>

@@ -3,6 +3,9 @@
 /* apply a natural box layout model to all elements, but allowing components to change */
 html {
   box-sizing: border-box;
+  a {
+    color: #45688E;
+  }
   input {
     width: 100%;
   }
@@ -11,16 +14,13 @@ html {
     width: 100%;
   }
   .btn {
-    height: 2.3em;
+    height: 2.2em;
     text-align: center;
   }
 
   #page {
     .navbar {
       margin-bottom: 0;
-    }
-    .navbar-inverse {
-      background-color: #4E729A;
     }
     .navbar-inner {
       border-top: none;
@@ -32,65 +32,109 @@ html {
       label {
         color: #45688E;
         font-weight: bold;
+        margin-bottom: 5px;
+      }
+      #session_email {
+        margin-bottom: 5px;
       }
       input {
-        height: 2.3em;
+        height: 2.2em;
       }
-      a {
-        color: #45688E;
+      #restore-pass {
+        font-size: 90%;
+        text-align: center;
       }
     }
 
     #page-body {
       margin-right: 20px;
-      .content {
-        padding: 5px 30px 10px 30px;
-      }
       border: 1px solid #D9E0E7;
-      h1, h2, a {
-        color: #45688E;
-        margin: 0;
-        padding: 0;
-      }
-      h2 {
-        font-size: 125%;
-        line-height: 1.2em;
-      }
-      p {
-        margin: 15px 0px;
-      }
-      .welcome {
+      .welcome-wrap {
         background-color: #E9EDF1;
-        padding: 7px 10px;
-        h1 {
-          font-size: 100%;       
-          line-height: 1.2em;
+        padding: 1px 0px;
+        .welcome {
+          padding: 0px 10px;
+          h1 {
+            color: #45688E;
+            font-size: 100%;       
+            line-height: 1.2em;
+          }
         }
       }
-      hr {
-        margin: 5px 0px;
-      }
-      .row {
-        margin-left: 0;
-      }
-      #signup {
-        padding: 10px 0;
-        input {
-          width: 100%;
-          height: 2.3em;
+      .content {
+        padding: 5px 30px 10px 30px;
+        h1, h2, a {
+          color: #45688E;
+          margin: 0;
+          padding: 0;
+        }
+        h2 {
+          font-size: 125%;
+          line-height: 1.2em;
+        }
+        p {
+          margin: 15px 0px;
+        }
+        
+        hr {
+          margin: 5px 0px 10px 0px;
+        }
+        .row {
+          margin-left: 0;
+        }
+        #signup {
+          margin: 0px auto;
+          padding: 10px 0;
+          width: 33%;
+          input {
+            width: 100%;
+            height: 2.2em;
+          }
+        }
+        #description {
+          #features {
+            li {
+              list-style: square outside none;
+              color: #758EAC;
+              span {
+                color: $grayDark;
+              }
+            }
+          }
+          #pictures {
+            padding: 20px 0px 30px 0px;
+            text-align: center;
+            .desc-picture {
+              display: inline-block;
+              padding: 0px 20px;
+            }
+          }
         }
       }
     }
 
     footer {
-      ul {
-        list-style: none;
-        li {
-          float: left;
-          margin-left: 10px;
-        }
-        a {
-          color: #45688E;
+      .footer-body {
+        margin-right: 20px;
+        .footer-content {
+          padding: 5px 30px 10px 30px;
+          #bottom_nav {
+            margin: 0 auto;
+            width: 70%;
+            ul {
+              list-style: none;
+              text-align: center;
+              li {
+                display: inline-block;
+                padding: 0px 5px;
+              }
+            }
+          }
+          #copyright {
+            margin: 0 auto;
+            width: 70%;
+            text-align: center;
+          }
         }
       }
     }

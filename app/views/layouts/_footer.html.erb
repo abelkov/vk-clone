@@ -1,9 +1,18 @@
 <footer>
-	<ul>
-		<li><%= link_to("about", about_path) %></li>
-		<li><%= link_to("terms", terms_path) %></li>
-		<li><%= link_to("people", people_path) %></li>
-		<li><%= link_to("communities", communities_path) %></li>
-		<li><%= link_to("developers", developers_path) %></li>
-	</ul>
+	<div class="footer-body">
+	  <div class="footer-content">
+			<div id="bottom_nav">
+				<ul class="inline">
+					<li><%= link_to("about", about_path) %></li>
+					<li><%= link_to("terms", terms_path) %></li>
+					<li><%= link_to("people", people_path) %></li>
+					<li><%= link_to("communities", communities_path) %></li>
+					<li><%= link_to("developers", developers_path) %></li>
+				</ul>
+			</div>
+			<div id="copyright">
+				<%= link_to "VK", about_path %> © 2014
+			</div>
+		</div>
+	</div>
 </footer>
