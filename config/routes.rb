@@ -1,7 +1,7 @@
 Vk::Application.routes.draw do
   root 'static_pages#index'
 
-  resources :users
+  resources :users, except: [:new]
   resources :sessions, only: [:create, :destroy]
 
   match 'restore',     to: 'static_pages#restore',     via: :get
