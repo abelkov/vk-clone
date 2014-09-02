@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 		self.email.downcase!
 		self.first_name.capitalize!
 		self.last_name.capitalize!
+		self.full_name = "#{self.first_name} #{self.last_name}"
 	end
 	validates :first_name, presence: true, length: { maximum: 50 }
 	validates :last_name, presence: true, length: { maximum: 50 }

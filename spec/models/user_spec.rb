@@ -10,6 +10,7 @@ describe User do
 
 	it { should respond_to(:first_name) }
 	it { should respond_to(:last_name) }
+	it { should respond_to(:full_name) }
 	it { should respond_to(:email) }
 	it { should respond_to(:password_digest) }
 	it { should respond_to(:password) }
@@ -54,6 +55,11 @@ describe User do
 			end
 			its(:last_name) { should eq 'Doe' }
 		end
+	end
+
+	describe "full name" do
+		before { @user.save }
+		its(:full_name) { should eq "John Doe" }
 	end
 
 	describe "email" do
