@@ -1,28 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= yield(:title) %></title>
-  <%= favicon_link_tag %>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
+	<title><%= yield(:title) %></title>
+	<%= favicon_link_tag %>
+	<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+	<%= csrf_meta_tags %>
 </head>
 <body>
-  <div class="container">
+	<div class="container">
 		<div id="page">
 
-		  <div class="row">
-
-				<%= render 'layouts/header' %>
-
+			<div class="row">
+				<%= render 'layouts/navbar' %>
 			</div>
 
 			<div class="row">
-			  <div class="span2">
-					<%= render 'layouts/sidebar' %>
+				<div class="span2">
+					<div id="sidebar">
+						<%= yield(:sidebar) %>
+					</div>
 				</div>
 				<div class="span10">
-					<%= yield %>
+					<div id="page-body">
+						<div id="header-wrap">
+							<div id="header">
+							  <%= yield(:header) %>
+							</div>
+						</div>
+						<div id="content">
+						  <%= yield %>
+						</div>	
+					</div>
 					<%= render 'layouts/footer' %>
 					<%= debug(params) if Rails.env.development? %>
 				</div>
