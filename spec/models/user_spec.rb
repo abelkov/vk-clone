@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe User do
 	before do
-		@user = User.new(first_name: 'John', last_name: 'Doe', email: 'jd@ex.com')
+		@user = User.new(first_name: 'John', last_name: 'Doe', email: 'jd@ex.com',
+			               password: 'foobar', password_confirmation: 'foobar')
 	end
 
 	subject { @user }
@@ -10,6 +11,10 @@ describe User do
 	it { should respond_to(:first_name) }
 	it { should respond_to(:last_name) }
 	it { should respond_to(:email) }
+	it { should respond_to(:password_digest) }
+	it { should respond_to(:password) }
+	it { should respond_to(:password_confirmation) }
+	it { should respond_to(:authenticate) }
 
 	describe "first name" do
 		describe "not present" do
@@ -20,6 +25,14 @@ describe User do
 		describe "too long" do
 			before { @user.first_name = "a" * 51 }
 			it { should_not be_valid }
+		end
+
+		describe "in lowercase" do
+			before do
+				@user.first_name = 'john'
+				@user.save
+			end
+			its(:first_name) { should eq 'John' }
 		end
 	end
 
@@ -32,6 +45,14 @@ describe User do
 		describe "too long" do
 			before { @user.last_name = "a" * 51 }
 			it { should_not be_valid }
+		end
+
+		describe "in lowercase" do
+			before do
+				@user.last_name = 'doe'
+				@user.save
+			end
+			its(:last_name) { should eq 'Doe' }
 		end
 	end
 
@@ -65,6 +86,55 @@ describe User do
 					expect(@user).to be_valid
 				end
 			end
+		end
+
+		describe "already taken" do
+			before do
+				user_with_same_email = @user.dup
+				user_with_same_email.email = @user.email.upcase
+				user_with_same_email.save
+			end
+			it { should_not be_valid }
+		end
+	end
+
+	describe "password" do
+
+		describe "not present" do
+			before do
+				@user = User.new(first_name: 'John', last_name: 'Doe',
+					               email: 'jd@ex.com', password: ' ',
+					               password_confirmation: ' ')
+			end
+			it { should_not be_valid }
+		end
+
+		describe "doesn't match confirmation" do
+			before { @user.password = 'mismatch' }
+			it { should_not be_valid }
+		end
+
+		describe "too short" do
+			before { @user.password = @user.password_confirmation = 'a' * 5 }
+			it { should_not be_valid }
+		end
+
+		describe "too long" do
+			before { @user.password = @user.password_confirmation = 'a' * 33 }
+			it { should_not be_valid }
+		end
+	end
+
+	describe "return value of authenticate method" do
+		before { @user.save }
+		let(:found_user) { User.find_by(email: @user.email) }
+
+		describe "with valid password" do
+			it { should eq found_user.authenticate(@user.password) }
+		end
+
+		describe "with invalid password" do
+			it { should_not eq found_user.authenticate("mismatch") }
 		end
 	end
 end
