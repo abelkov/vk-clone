@@ -13,6 +13,7 @@ describe User do
 	it { should respond_to(:password) }
 	it { should respond_to(:password_confirmation) }
 	it { should respond_to(:authenticate) }
+	it { should respond_to(:status) }
 
 	describe "first name" do
 		describe "not present" do
@@ -138,5 +139,8 @@ describe User do
 		describe "with invalid password" do
 			it { should_not eq found_user.authenticate("mismatch") }
 		end
+	end
+
+	describe "status" do
 	end
 end

@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+	has_and_belongs_to_many :languages
 	before_save do 
 		self.email.downcase!
 		self.first_name.capitalize!

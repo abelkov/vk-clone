@@ -2,6 +2,14 @@
 
 /* apply a natural box layout model to all elements, but allowing components to change (thanks, Paul Irish) */
 html {
+
+  // clearfix hack
+  .group:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
   box-sizing: border-box;
   a {
     color: #45688E;
@@ -70,7 +78,7 @@ html {
         }
       }
       #content {
-        padding: 5px 30px 10px 30px;
+        padding: 10px 30px 10px 30px;
         h1, h2, a {
           color: #45688E;
           margin: 0;
@@ -90,6 +98,8 @@ html {
         .row {
           margin-left: 0;
         }
+
+        // Home page
         #signup {
           margin: 0px auto;
           padding: 10px 0;
@@ -118,6 +128,25 @@ html {
             }
           }
         }
+
+        // Profile page
+        #profile {
+          #profile_narrow {
+            margin: 0 1% 0 -2%;
+            width: 32%;
+            float: left;
+          }
+          #profile_wide {
+            margin: 0 -2% 0 1%;
+            width: 70%;
+            float: right;
+            .page_name {
+              color: #45688E;
+              font-weight: bold;
+            }
+          }
+        }
+
       }
     }
 
