@@ -1,7 +1,7 @@
 <% provide(:title, "Welcome! | VK") %>
 
 <% content_for :sidebar do %>
-	<%= render 'login' %>
+	<%= render 'static_pages/login' %>
 <% end %>
 
 <% content_for :header do %>
@@ -18,9 +18,9 @@
 <hr>
 
 <div class="row">
-		<%= render 'signup' %>
+		<%= render 'static_pages/signup' %>
 </div>
 
 <div class="row">
-	<%= render 'description' %>
+	<%= render 'static_pages/description' %>
 </div>
