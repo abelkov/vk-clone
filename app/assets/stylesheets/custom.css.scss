@@ -10,6 +10,14 @@ html {
     clear: both;
   }
 
+  .fl_l {
+    float: left;
+  }
+
+  .fl_r {
+    float: right;
+  }
+
   box-sizing: border-box;
   a {
     color: #45688E;
@@ -143,6 +151,13 @@ html {
             .page_name {
               color: #45688E;
               font-weight: bold;
+            }
+            .profile-label {
+              width: 35%;
+              color: #777;
+            }
+            .labeled {
+              width: 65%;
             }
           }
         }

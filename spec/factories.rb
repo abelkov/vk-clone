@@ -5,5 +5,10 @@ FactoryGirl.define do
     email    			 "knots@ya.ru"
     password 			 "secret"
     password_confirmation "secret"
+    status "You're mocking a global object. What the fuck?"
+    hometown       "Pskov"
+    sex 		 		   "Male"
+    relationship   "Single"
+    birthday 			 Date.new(1992, 2, 18)
   end
 end

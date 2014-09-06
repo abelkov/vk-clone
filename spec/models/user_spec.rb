@@ -14,6 +14,11 @@ describe User do
 	it { should respond_to(:password_confirmation) }
 	it { should respond_to(:authenticate) }
 	it { should respond_to(:status) }
+	it { should respond_to(:sex) }
+	it { should respond_to(:relationship) }
+	it { should respond_to(:birthday) }
+	it { should respond_to(:hometown) }
+	it { should respond_to(:languages) }
 
 	describe "first name" do
 		describe "not present" do
@@ -103,7 +108,6 @@ describe User do
 	end
 
 	describe "password" do
-
 		describe "not present" do
 			it "should raise" do
 			  expect do
@@ -142,5 +146,53 @@ describe User do
 	end
 
 	describe "status" do
+	end
+
+	describe "sex" do
+		describe "valid" do
+			it 'should be valid' do
+				valid = ["Male", "Female", "", nil]
+				valid.each do |sex|
+					user.sex = sex
+					expect(user).to be_valid
+				end
+			end
+		end
+
+		describe "invalid" do
+			before { user.sex = 'invalid' }
+			it { should_not be_valid }
+		end
+	end
+
+	describe "relationship" do
+		describe "valid" do
+			it 'should be valid' do
+				valid = ["Single", "In a relationship", "Engaged", "Married",
+					       "In love", "It's complicated", "Actively searching", "", nil]
+				valid.each do |rel|
+					user.relationship = rel
+					expect(user).to be_valid
+				end
+			end
+		end
+
+		describe "invalid" do
+			before { user.relationship = 'invalid' }
+			it { should_not be_valid }
+		end
+	end
+
+	describe "birthday" do
+	end
+
+	describe "hometown" do
+		describe "too long" do
+			before { user.hometown = "a" * 51 }
+			it { should_not be_valid }
+		end
+	end
+
+	describe "languages" do
 	end
 end
