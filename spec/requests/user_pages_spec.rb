@@ -28,10 +28,42 @@ describe "User pages" do
 
 		describe "without sex" do
 			before do
-				user.sex = nil
+				user.update_attribute(:sex, nil)
 				visit user_path(user)
 			end
 			it { should_not have_content("Sex:") }
+		end
+
+		describe "without relationship" do
+			before do
+				user.update_attribute(:relationship, nil)
+				visit user_path(user)
+			end
+			it { should_not have_content("Relationship:") }
+		end
+
+		describe "without birthday" do
+			before do
+				user.update_attribute(:birthday, nil)
+				visit user_path(user)
+			end
+			it { should_not have_content("Birthday:") }
+		end
+
+		describe "without hometown" do
+			before do
+				user.update_attribute(:hometown, nil)
+				visit user_path(user)
+			end
+			it { should_not have_content("Hometown:") }
+		end
+		
+		describe "without languages" do
+			before do
+				user.update_attribute(:languages, nil)
+				visit user_path(user)
+			end
+			it { should_not have_content("Languages:") }
 		end
 	end
 end

@@ -17,12 +17,11 @@
 				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniamz
 			</div>
 
-
 			<div id="profile_wide">
 				<div id="profile_info">
-					<div class="page_name"><%= @user.full_name %></div>
+					<div id="page_name"><%= @user.full_name %></div>
 					<div id="status"><%= @user.status unless @user.status.blank? %></div>
-					<hr/>
+					<hr>
 
 					<% unless @user.sex.blank? %>
 						<div class="group">
