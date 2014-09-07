@@ -10,6 +10,7 @@ FactoryGirl.define do
     sex 		     "Male"
     relationship "Single"
     birthday 	   Date.new(1992, 2, 18)
+    languages { [FactoryGirl.create(:english), FactoryGirl.create(:russian)] }
     
   end
 

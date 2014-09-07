@@ -93,7 +93,7 @@ describe "User pages" do
 
 		describe "without languages" do
 			before do
-				user.update_attribute(:languages, nil)
+				user.languages.delete_all
 				visit user_path(user)
 			end
 			it { should_not have_content("Languages:") }
