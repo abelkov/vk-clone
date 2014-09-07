@@ -1,5 +1,11 @@
 class User < ActiveRecord::Base
 	has_and_belongs_to_many :languages
+	has_attached_file :avatar, styles: { :medium => "200x200>",
+		thumb: "50x50>" }, default_url: ":style/missing.gif"
+  validates_attachment :avatar, size: { in: 0..1.megabytes }
+  validates_attachment_content_type :avatar, :content_type => /\Aimage/
+  validates_attachment_file_name :avatar, :matches => [/png\Z/, /jpe?g\Z/]
+  do_not_validate_attachment_file_type :avatar
 
 	validates :first_name, presence: true, length: { maximum: 50 }
 	validates :last_name, presence: true, length: { maximum: 50 }
