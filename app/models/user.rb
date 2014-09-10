@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 	has_and_belongs_to_many :languages
-	has_attached_file :avatar, styles: { :medium => "200x200>",
+	has_attached_file :avatar, styles: { :medium => "232x232>",
 		thumb: "50x50>" }, default_url: ":style/missing.gif"
   validates_attachment :avatar, size: { in: 0..1.megabytes }
   validates_attachment_content_type :avatar, :content_type => /\Aimage/

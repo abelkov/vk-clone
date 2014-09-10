@@ -1,7 +1,7 @@
 Vk::Application.routes.draw do
   root 'static_pages#index'
 
-  resources :users, except: [:new]
+  resources :users
   resources :sessions, only: [:create, :destroy]
 
   match 'logout',      to: 'sessions#destroy',         via: :delete

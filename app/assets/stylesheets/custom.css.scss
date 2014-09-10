@@ -60,7 +60,14 @@ html {
       input {
         height: 2.2em;
       }
-      #restore-pass {
+      form {
+        margin-bottom: 10px;
+      }
+      #signup_btn {
+        width: 100%;
+        margin-bottom: 5px;
+      }
+      #restore_pass {
         font-size: 90%;
         text-align: center;
       }
@@ -74,10 +81,10 @@ html {
       }
     }
 
-    #page-body {
+    #page_body {
       margin-right: 20px;
       border: 1px solid #D9E0E7;
-      #header-wrap {
+      #header_wrap {
         background-color: #E9EDF1;
         padding: 1px 0px;
         #header {
@@ -112,7 +119,7 @@ html {
         }
 
         // Home page
-        #signup {
+        #index_signup {
           margin: 0px auto;
           padding: 10px 0;
           width: 33%;
@@ -146,7 +153,7 @@ html {
           #pictures {
             padding: 20px 0px 30px 0px;
             text-align: center;
-            .desc-picture {
+            .desc_picture {
               display: inline-block;
               padding: 0px 20px;
             }
@@ -159,6 +166,23 @@ html {
             margin: 0 1% 0 -2%;
             width: 32%;
             float: left;
+            font-size: 90%;
+            #invitation-wrap {
+              background-color: #F1F1F1;
+              margin: 10px 0px;
+              #invitation {
+                text-align: center;
+                padding: 10px 3px;  
+                color: #666;
+                a {
+                  font-weight: bold;
+                  color: #666;
+                }
+                p {
+                  margin: 0;
+                }
+              }
+            }
           }
           #profile_wide {
             margin: 0 -2% 0 1%;
@@ -168,7 +192,7 @@ html {
               color: #45688E;
               font-weight: bold;
             }
-            .profile-label {
+            .profile_label {
               width: 35%;
               color: #777;
             }
@@ -182,9 +206,9 @@ html {
     }
 
     footer {
-      #footer-body {
+      #footer_body {
         margin-right: 20px;
-        #footer-content {
+        #footer_content {
           padding: 5px 30px 10px 30px;
           #bottom_nav {
             margin: 0 auto;

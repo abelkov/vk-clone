@@ -7,5 +7,10 @@
 		<%= f.submit "Log in", class: "btn btn-primary" %>
 	<% end %>
 
-	<%= link_to "Forgot your password?", restore_path, id: "restore-pass" %>
+	<% if request.original_url != root_url %>
+		<%= link_to "Sign up", root_url, class: "btn btn-primary",
+		                                 id: "signup_btn" %>
+	<% end %>
+
+	<%= link_to "Forgot your password?", restore_path, id: "restore_pass" %>
 </div>

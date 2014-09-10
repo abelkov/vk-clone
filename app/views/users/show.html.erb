@@ -14,9 +14,19 @@
 
 <div id="profile">
 	<div id="profile_narrow">
-		<%= link_to image_tag(@user.avatar.url(:medium)), @user.avatar.url %>
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniamz
+		<div id="avatar">
+			<%= link_to image_tag(@user.avatar.url(:medium), size: "232x232"),
+			            @user.avatar.url %>
+		</div>
+		<% if not signed_in? %>
+			<div id="invitation-wrap">
+			  <div id="invitation">
+					<p><%= link_to "Join VK now", root_url %> to stay in touch
+					with <%= @user.first_name %> and millions of others.</p>
+					<p>Or log in, if you have a <strong>VK</strong> account.</p>
+				</div>
+			</div>
+		<% end %>
 	</div>
 
 	<div id="profile_wide">
@@ -27,19 +37,19 @@
 
 			<% unless @user.sex.blank? %>
 			<div class="group">
-				<div class="profile-label fl_l">Sex:</div>
+				<div class="profile_label fl_l">Sex:</div>
 				<div class="labeled fl_l"><%= @user.sex %></div>
 			</div>
 			<% end %>
 			<% unless @user.relationship.blank? %>
 			<div class="group">
-				<div class="profile-label fl_l">Relationship:</div>
+				<div class="profile_label fl_l">Relationship:</div>
 				<div class="labeled fl_l"><%= @user.relationship %></div>
 			</div>
 			<% end %>
 			<% unless @user.birthday.blank? %>
 			<div class="group">
-				<div class="profile-label fl_l">Birthday:</div>
+				<div class="profile_label fl_l">Birthday:</div>
 				<div class="labeled fl_l">
 					<%= @user.birthday.strftime("%B %-d, %Y") %>
 				</div>
@@ -47,13 +57,13 @@
 			<% end %>
 			<% unless @user.hometown.blank? %>
 			<div class="group">
-				<div class="profile-label fl_l">Hometown:</div>
+				<div class="profile_label fl_l">Hometown:</div>
 				<div class="labeled fl_l"><%= @user.hometown %></div>
 			</div>
 			<% end %>
 			<% unless @user.languages.blank? %>
 			<div class="group">
-				<div class="profile-label fl_l">Languages:</div>
+				<div class="profile_label fl_l">Languages:</div>
 				<div class="labeled fl_l">
 					<%= @user.languages.map(&:name).join(", ") %>
 				</div>
