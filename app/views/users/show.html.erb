@@ -1,62 +1,64 @@
 <% provide(:title, @user.full_name) %>
 
 <% content_for :sidebar do %>
-	<%= render 'menu' %>
+<%= render 'menu' %>
 <% end %>
 
 <% content_for :header do %>
-	<h1><%= @user.full_name %></h1>
+<h1><%= @user.full_name %></h1>
 <% end %>
 
 
-	<div id="profile">
+<div id="profile">
 
-			<div id="profile_narrow">
-				<%= image_tag @user.avatar.url(:medium) %>
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniamz
+<%= link_to "Log out", logout_path, method: :delete %>
+
+	<div id="profile_narrow">
+		<%= image_tag @user.avatar.url(:medium) %>
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniamz
+	</div>
+
+	<div id="profile_wide">
+		<div id="profile_info">
+			<div id="page_name"><%= @user.full_name %></div>
+			<div id="status"><%= @user.status unless @user.status.blank? %></div>
+			<hr>
+
+			<% unless @user.sex.blank? %>
+			<div class="group">
+				<div class="profile-label fl_l">Sex:</div>
+				<div class="labeled fl_l"><%= @user.sex %></div>
 			</div>
-
-			<div id="profile_wide">
-				<div id="profile_info">
-					<div id="page_name"><%= @user.full_name %></div>
-					<div id="status"><%= @user.status unless @user.status.blank? %></div>
-					<hr>
-
-					<% unless @user.sex.blank? %>
-						<div class="group">
-							<div class="profile-label fl_l">Sex:</div>
-							<div class="labeled fl_l"><%= @user.sex %></div>
-						</div>
-					<% end %>
-					<% unless @user.relationship.blank? %>
-						<div class="group">
-							<div class="profile-label fl_l">Relationship:</div>
-							<div class="labeled fl_l"><%= @user.relationship %></div>
-						</div>
-					<% end %>
-					<% unless @user.birthday.blank? %>
-						<div class="group">
-							<div class="profile-label fl_l">Birthday:</div>
-							<div class="labeled fl_l">
-								<%= @user.birthday.strftime("%B %-d, %Y") %>
-							</div>
-						</div>
-					<% end %>
-					<% unless @user.hometown.blank? %>
-						<div class="group">
-							<div class="profile-label fl_l">Hometown:</div>
-							<div class="labeled fl_l"><%= @user.hometown %></div>
-						</div>
-					<% end %>
-					<% unless @user.languages.blank? %>
-						<div class="group">
-							<div class="profile-label fl_l">Languages:</div>
-							<div class="labeled fl_l">
-							  <%= @user.languages.map(&:name).join(", ") %>
-							</div>
-						</div>
-					<% end %>
+			<% end %>
+			<% unless @user.relationship.blank? %>
+			<div class="group">
+				<div class="profile-label fl_l">Relationship:</div>
+				<div class="labeled fl_l"><%= @user.relationship %></div>
+			</div>
+			<% end %>
+			<% unless @user.birthday.blank? %>
+			<div class="group">
+				<div class="profile-label fl_l">Birthday:</div>
+				<div class="labeled fl_l">
+					<%= @user.birthday.strftime("%B %-d, %Y") %>
 				</div>
 			</div>
+			<% end %>
+			<% unless @user.hometown.blank? %>
+			<div class="group">
+				<div class="profile-label fl_l">Hometown:</div>
+				<div class="labeled fl_l"><%= @user.hometown %></div>
+			</div>
+			<% end %>
+			<% unless @user.languages.blank? %>
+			<div class="group">
+				<div class="profile-label fl_l">Languages:</div>
+				<div class="labeled fl_l">
+					<%= @user.languages.map(&:name).join(", ") %>
+				</div>
+			</div>
+			<% end %>
+		</div>
 	</div>
+</div>

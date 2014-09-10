@@ -4,44 +4,6 @@ describe "User pages" do
 
 	subject { page }
 
-	describe "signup page" do
-		before { visit root_path }
-		it { should have_content("Sign up") }
-	end
-
-	describe "signing up" do
-		before { visit root_path }
-
-		describe "with invalid information" do
-			it "should not create the user" do
-				expect { click_button "Sign up" }.not_to change(User, :count)
-			end
-			describe "displaying error message" do
-				before { click_button "Sign up" }
-			  it { should have_selector(".alert-error") }
-			end
-		end
-		describe "with valid information" do
-			before do
-				fill_in "Your first name", with: 'alexey'
-				fill_in "Your last name", with: 'belkov'
-				fill_in "Your email", with: 'knots@ya.ru'
-				fill_in "Your password", with: 'secret'
-				fill_in "Confirm your password", with: 'secret'
-			end
-
-			it "should create the user" do
-				expect { click_button "Sign up" }.to change(User, :count).by(1)
-			end
-
-			describe "congratulating new user on profile page" do
-				before { click_button "Sign up" }
-				it { should have_title('Alexey Belkov') }
-				it { should have_selector(".alert-success") }
-			end
-		end
-	end
-
 	describe "profile page" do
 		let(:user) { FactoryGirl.create(:user) }
 		before { visit user_path(user) }

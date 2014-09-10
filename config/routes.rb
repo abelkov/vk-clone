@@ -4,6 +4,8 @@ Vk::Application.routes.draw do
   resources :users, except: [:new]
   resources :sessions, only: [:create, :destroy]
 
+  match 'logout',      to: 'sessions#destroy',         via: :delete
+
   match 'restore',     to: 'static_pages#restore',     via: :get
 
   match 'about',       to: 'static_pages#about',       via: :get
