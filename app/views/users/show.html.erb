@@ -8,13 +8,9 @@
 <h1><%= @user.full_name %></h1>
 <% end %>
 
-
 <div id="profile">
-
-<%= link_to "Log out", logout_path, method: :delete %>
-
 	<div id="profile_narrow">
-		<%= image_tag @user.avatar.url(:medium) %>
+		<%= link_to image_tag(@user.avatar.url(:medium)), @user.avatar.url %>
 		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniamz
 	</div>

@@ -63,13 +63,13 @@ describe "Authentication" do
 			end
 
 			it { should have_link("log out", href: logout_path) }
-			it { should have_title(user.name) }
+			it { should have_title(user.full_name) }
 
 			describe "followed by logout" do
-				before { click_link "Log out" }
+				before { click_link "log out" }
 				# redirects to root
 				it { should have_content("Welcome") }
-				it { should have_selector(".login") }
+				it { should have_selector("#login") }
 			end
 		end
 	end

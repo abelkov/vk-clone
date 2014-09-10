@@ -41,6 +41,10 @@ html {
     .navbar-inner {
       border-top: none;
       border-radius: 0px 0px 10px 10px;
+      #logout {
+        margin: 10px 10px 0 0;
+        color: #E8EFF7;
+      }
     }
 
     #login {
