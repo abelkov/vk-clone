@@ -6,6 +6,7 @@ Vk::Application.routes.draw do
 
   match 'logout',      to: 'sessions#destroy',         via: :delete
 
+  match 'edit',        to: 'users#edit',               via: :get
   match 'restore',     to: 'static_pages#restore',     via: :get
 
   match 'about',       to: 'static_pages#about',       via: :get

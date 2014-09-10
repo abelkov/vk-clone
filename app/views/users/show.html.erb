@@ -1,7 +1,11 @@
 <% provide(:title, @user.full_name) %>
 
 <% content_for :sidebar do %>
-<%= render 'menu' %>
+	<% if signed_in? %>
+		<%= render 'users/menu' %>
+	<% else %>
+		<%= render 'static_pages/login' %>
+	<% end %>
 <% end %>
 
 <% content_for :header do %>
