@@ -1,6 +1,10 @@
 class StaticPagesController < ApplicationController
 	def index
-		@user = User.new
+		if signed_in?
+			redirect_to user_path(current_user)
+		else
+			@user = User.new
+		end
 	end
 
 	def restore

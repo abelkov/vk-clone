@@ -14,6 +14,10 @@ class UsersController < ApplicationController
 		end
 	end
 
+	def edit
+		@user = User.find_by(remember_token: User.digest(cookies[:remember_token]))
+	end
+
 	private
 
 		def user_params
