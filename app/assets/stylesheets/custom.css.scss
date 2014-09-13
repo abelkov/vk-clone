@@ -202,6 +202,50 @@ html {
           }
         }
 
+        // Edit page
+        #edit {
+          margin: 0px auto;
+          padding: 10px 0;
+          width: 33%;
+          input[type="text"], input[type="password"] {
+            height: 2.2em;
+          }
+        }
+
+        #settings {
+          margin: 0px auto;
+          padding: 10px 0;
+          width: 70%;
+
+          #change_password, #change_email {
+            margin: 30px auto;
+            width: 90%;
+            h2 {
+              font-size: 100%;
+            }
+            hr {
+              margin: 2px 0px 15px 0px;
+            }
+            input[type="text"], input[type="password"], input[type="submit"] {
+              height: 2.2em;
+              width: 45%;
+            }
+            input[type="submit"] {
+              float: right;
+              margin-right: 10%;
+              font-size: 100%;
+              padding: 0;
+            }
+            label {
+              float: left;
+              text-align: right;
+              width: 40%;
+              padding-top: 5px;
+              margin-right: 5%;
+            }
+          }
+        }
+
       }
     }
 

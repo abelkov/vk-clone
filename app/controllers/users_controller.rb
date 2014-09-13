@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+	before_action :require_login, only: [:edit, :settings]
+
 	def show
 		@user = User.find(params[:id])
 	end
@@ -15,7 +17,11 @@ class UsersController < ApplicationController
 	end
 
 	def edit
-		@user = User.find_by(remember_token: User.digest(cookies[:remember_token]))
+		@user = current_user
+	end
+
+	def settings
+		@user = current_user
 	end
 
 	private
@@ -23,5 +29,13 @@ class UsersController < ApplicationController
 		def user_params
 			params.require(:user).permit(:first_name, :last_name, :email,
 				                           :password, :password_confirmation)
+		end
+
+		def require_login
+			redirect_to root_url, notice: "Please sign in." unless signed_in?
+		end
+
+		def correct_user
+			
 		end
 end

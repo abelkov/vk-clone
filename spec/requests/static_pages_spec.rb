@@ -10,7 +10,7 @@ describe "Static pages" do
 		it { should have_title("Welcome") }
 		
 		it { should have_selector("#login") }
-		it { should have_selector("#signup") }
+		it { should have_selector("#index_signup") }
 		it { should have_selector("#description") }
 
 		it { should have_content("VK") }
