@@ -12,20 +12,18 @@
   <div id="change_password" class="group">
     <h2>Change password</h2>
     <hr>
-    <%= form_for(@user) do |f| %>
+    <%= form_for @user, html: { id: "password_form", class: "group" } do |f| %>
       <%= render 'shared/error_messages' %>
 
       <%= f.label :password, "Current password:" %>
       <%= f.password_field :password %>
       <br>
-
       <%= f.label :new_password, "New password:" %>
       <%= f.password_field :new_password %>
       <br>
-
       <%= f.label :new_password_confirmation, "Repeat new password:" %>
       <%= f.password_field :new_password_confirmation %>
-
+      <br>
       <%= f.submit "Change password", class: "btn btn-large btn-primary" %>
     <% end %>
   </div>
@@ -33,13 +31,12 @@
   <div id="change_email" class="group">
     <h2>Change email address</h2>
     <hr>
-    <%= form_for(@user) do |f| %>
+    <%= form_for @user, html: { id: "email_form", class: "group" } do |f| %>
       <%= render 'shared/error_messages' %>
 
       <%= f.label :email, "My email:" %>
       <%= f.text_field :email %>
       <br>
-
       <%= f.submit "Save email", class: "btn btn-large btn-primary" %>
     <% end %>
   </div>
