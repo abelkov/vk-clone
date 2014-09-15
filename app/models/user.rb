@@ -10,11 +10,15 @@ class User < ActiveRecord::Base
 	validates :first_name, presence: true, length: { maximum: 50 }
 	validates :last_name, presence: true, length: { maximum: 50 }
 	Email_regex = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
-	validates :email, presence: true, length: { maximum: 50 },
+	validates :email, length: { maximum: 50 },
 	                  format: { with: Email_regex },
 	                  uniqueness: { case_sensitive: false }
+
 	has_secure_password
-	validates :password, length: { in: 6..32 }
+	validates :password,
+    length: { in: 6..32, if: :validate_password? },
+    confirmation: { if: :validate_password? }
+
 	validates :sex, inclusion: { in: %w(Male Female) }, allow_blank: true
 	validates :relationship, inclusion: { in: ["Single", "In a relationship",
 		"Engaged", "Married", "In love", "It's complicated", "Actively searching"] },                     allow_blank: true
@@ -43,4 +47,8 @@ class User < ActiveRecord::Base
 		def create_remember_token
 			self.remember_token = User.digest(User.new_remember_token)
 		end
+
+		def validate_password?
+	    password.present? || password_confirmation.present?
+	  end
 end
