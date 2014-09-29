@@ -28,7 +28,7 @@
     <%= f.label :hometown %>
     <%= f.text_field :hometown %>
     <%= f.label :languages %>
-    <%= f.text_field :languages %>
+    <%= f.text_field :languages, value: @user.languages.map(&:name).join(", ") %>
 
     <%= f.submit "Update profile", class: "btn btn-large btn-primary" %>
   <% end %>
