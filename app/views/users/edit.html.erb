@@ -8,16 +8,28 @@
   <h1>Edit my profile</h1>
 <% end %>
 
+<% sex_options = ["Male", "Female", "- None selected -"] %>
+<% relationship_options = ["Single", "In a relationship", "Engaged", "Married", "In love", "It's complicated", "Actively searching", "- None selected -"] %>
+
 <div id="edit">
   <%= form_for(@user) do |f| %>
     <%= render 'shared/error_messages' %>
 
     <%= f.label :first_name %>
     <%= f.text_field :first_name %>
-
     <%= f.label :last_name %>
     <%= f.text_field :last_name %>
+    <%= f.label :sex %>
+    <%= f.select :sex, sex_options %>
+    <%= f.label :relationship %>
+    <%= f.select :relationship, relationship_options %>
+    <%= f.label :birthday %>
+    <%= f.date_field :birthday %>
+    <%= f.label :hometown %>
+    <%= f.text_field :hometown %>
+    <%= f.label :languages %>
+    <%= f.text_field :languages %>
 
-    <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+    <%= f.submit "Update profile", class: "btn btn-large btn-primary" %>
   <% end %>
 </div>

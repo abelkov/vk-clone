@@ -46,11 +46,13 @@ class UsersController < ApplicationController
 			end
 		when "Change email"
 			if params[:user][:email] == @user.email
-				flash.now[:notice] = "Your email wasn't changed."
+				flash.now[:notice] = "Your email address wasn't changed."
+			elsif params[:user][:email].blank?
+				flash.now[:error] = "You didn't enter any email address."
 			elsif @user.update(email: params[:user][:email])
-				flash.now[:success] = "Your email is updated!"
+				flash.now[:success] = "Your email address is updated."
 			else
-				flash.now[:error] = "You can't use that email. Please enter a valid email address."
+				flash.now[:error] = "You can't use that email address. Please enter a valid email address."
 			end
 		end
 		render 'settings'
