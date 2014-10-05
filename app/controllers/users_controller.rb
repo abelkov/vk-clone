@@ -45,6 +45,7 @@ class UsersController < ApplicationController
 				flash.now[:error] = "You entered an incorrect password. Try again."
 			end
 			render 'settings'
+
 		when "Change email"
 			if params[:user][:email] == @user.email
 				flash.now[:notice] = "Your email address wasn't changed."
@@ -56,18 +57,20 @@ class UsersController < ApplicationController
 				flash.now[:error] = "You can't use that email address. Please enter a valid email address."
 			end
 			render 'settings'
-		when "Update profile"
-			@user.languages.clear
-			languages = update_user_params[:languages].split(", ").map(&:capitalize)
 
+		when "Update profile"
+			@user.update update_basic_params
+
+			# update languages
+			@user.languages.clear
+			languages = params[:user][:languages].split(", ").map(&:capitalize)
 			languages.each do |language|
-				l = Language.find_by(name: language)
-				if l then @user.languages << l
+				existing = Language.find_by(name: language)
+				if existing then @user.languages << existing
 				else @user.languages << Language.create(name: language)
 				end
 			end
-			@user.save!
-
+			@user.save! if @user.valid?
 			render 'edit'
 		end
 	end
@@ -78,10 +81,9 @@ private
 			:password, :password_confirmation)
 	end
 
-	def update_user_params
-		params.require(:user).permit(:first_name, :last_name, :email, :password,
-			:password_confirmation, :sex, :relationship, :birthday, :hometown,
-			:languages)
+	def update_basic_params
+		params.require(:user).permit(:first_name, :last_name, :sex, :relationship,
+			                           :birthday, :hometown)
 	end
 
 	def require_login

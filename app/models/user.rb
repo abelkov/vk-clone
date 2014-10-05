@@ -28,7 +28,6 @@ class User < ActiveRecord::Base
 		self.first_name.capitalize!
 		self.last_name.capitalize!
 		self.full_name = "#{self.first_name} #{self.last_name}"
-		self.hometown.capitalize! unless hometown.nil?
 	end
 
 	before_create :create_remember_token
