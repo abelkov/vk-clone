@@ -139,7 +139,7 @@ describe User do
 		describe "sex" do
 			describe "valid" do
 				it 'should be valid' do
-					valid = ["Male", "Female", "", nil]
+					valid = SEX + ["", nil]
 					valid.each do |sex|
 						user.sex = sex
 						expect(user).to be_valid
@@ -155,8 +155,7 @@ describe User do
 		describe "relationship" do
 			describe "valid" do
 				it 'should be valid' do
-					valid = ["Single", "In a relationship", "Engaged", "Married",
-						       "In love", "It's complicated", "Actively searching", "", nil]
+					valid = RELATIONSHIP + ["", nil]
 					valid.each do |rel|
 						user.relationship = rel
 						expect(user).to be_valid

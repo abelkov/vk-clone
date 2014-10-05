@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 	end
 
 	def create
-		@user = User.new user_params
+		@user = User.new create_user_params
 		if @user.save
 			sign_in @user
 			flash[:success] = "Welcome to VK!"
@@ -44,6 +44,7 @@ class UsersController < ApplicationController
 			else
 				flash.now[:error] = "You entered an incorrect password. Try again."
 			end
+			render 'settings'
 		when "Change email"
 			if params[:user][:email] == @user.email
 				flash.now[:notice] = "Your email address wasn't changed."
@@ -54,14 +55,33 @@ class UsersController < ApplicationController
 			else
 				flash.now[:error] = "You can't use that email address. Please enter a valid email address."
 			end
+			render 'settings'
+		when "Update profile"
+			@user.languages.clear
+			languages = update_user_params[:languages].split(", ").map(&:capitalize)
+
+			languages.each do |language|
+				l = Language.find_by(name: language)
+				if l then @user.languages << l
+				else @user.languages << Language.create(name: language)
+				end
+			end
+			@user.save!
+
+			render 'edit'
 		end
-		render 'settings'
 	end
 
 private
-	def user_params
+	def create_user_params
 		params.require(:user).permit(:first_name, :last_name, :email,
 			:password, :password_confirmation)
+	end
+
+	def update_user_params
+		params.require(:user).permit(:first_name, :last_name, :email, :password,
+			:password_confirmation, :sex, :relationship, :birthday, :hometown,
+			:languages)
 	end
 
 	def require_login

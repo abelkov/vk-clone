@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-	has_and_belongs_to_many :languages
+	has_and_belongs_to_many :languages, -> { uniq }
 	has_attached_file :avatar, styles: { :medium => "232x232>",
 		thumb: "50x50>" }, default_url: ":style/missing.gif"
   validates_attachment :avatar, size: { in: 0..1.megabytes }
@@ -19,9 +19,8 @@ class User < ActiveRecord::Base
     length: { in: 6..32, if: :validate_password? },
     confirmation: { if: :validate_password? }
 
-	validates :sex, inclusion: { in: %w(Male Female) }, allow_blank: true
-	validates :relationship, inclusion: { in: ["Single", "In a relationship",
-		"Engaged", "Married", "In love", "It's complicated", "Actively searching"] },                     allow_blank: true
+	validates :sex, inclusion: { in: SEX }, allow_blank: true
+	validates :relationship, inclusion: { in: RELATIONSHIP },                       allow_blank: true
 	validates :hometown, length: { maximum: 50 }
 
 	before_save do 
