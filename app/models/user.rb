@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+	attr_accessor :month, :day, :year
+
 	has_and_belongs_to_many :languages, -> { uniq }
 	has_attached_file :avatar, styles: { :medium => "232x232>",
 		thumb: "50x50>" }, default_url: ":style/missing.gif"
@@ -22,6 +24,9 @@ class User < ActiveRecord::Base
 	validates :sex, inclusion: { in: SEX }, allow_blank: true
 	validates :relationship, inclusion: { in: RELATIONSHIP },                       allow_blank: true
 	validates :hometown, length: { maximum: 50 }
+
+	include ActiveModel::Validations
+	validate :validate_birthday, on: :update
 
 	before_save do 
 		self.email.downcase!
@@ -49,4 +54,21 @@ class User < ActiveRecord::Base
 		def validate_password?
 	    password.present? || password_confirmation.present?
 	  end
+
+		def convert_birthday
+			if [self.try(:month), self.try(:day), self.try(:year)].count(nil) == 3
+				true
+		  else
+		  	begin
+			    self.birthday = Date.civil(self.year.to_i, self.month.to_i,
+			    	                         self.day.to_i)
+			  rescue ArgumentError
+			    false
+		  	end
+		  end
+		end
+
+		def validate_birthday
+		  errors.add("Birthday date", "is invalid.") unless convert_birthday
+		end
 end

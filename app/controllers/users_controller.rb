@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 	end
 
 	def create
-		@user = User.new create_user_params
+		@user = User.new create_params
 		if @user.save
 			sign_in @user
 			flash[:success] = "Welcome to VK!"
@@ -59,7 +59,9 @@ class UsersController < ApplicationController
 			render 'settings'
 
 		when "Update profile"
-			@user.update update_basic_params
+			@user.month = birthday_params["birthday(2i)"]
+			@user.day   = birthday_params["birthday(3i)"]
+			@user.year  = birthday_params["birthday(1i)"]
 
 			# update languages
 			@user.languages.clear
@@ -70,20 +72,25 @@ class UsersController < ApplicationController
 				else @user.languages << Language.create(name: language)
 				end
 			end
-			@user.save! if @user.valid?
+
+			@user.update basic_params
 			render 'edit'
 		end
 	end
 
 private
-	def create_user_params
+	def create_params
 		params.require(:user).permit(:first_name, :last_name, :email,
 			:password, :password_confirmation)
 	end
 
-	def update_basic_params
+	def basic_params
 		params.require(:user).permit(:first_name, :last_name, :sex, :relationship,
-			                           :birthday, :hometown)
+			                           :hometown)
+	end
+
+	def birthday_params
+		params.require(:user).permit("birthday(1i)", "birthday(2i)", "birthday(3i)")
 	end
 
 	def require_login

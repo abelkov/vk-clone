@@ -20,7 +20,7 @@
     <%= f.label :relationship %>
     <%= f.select :relationship, RELATIONSHIP %>
     <%= f.label :birthday %>
-    <%= f.date_field :birthday %>
+    <%= f.date_select :birthday, order: [:month, :day, :year] %>
     <%= f.label :hometown %>
     <%= f.text_field :hometown %>
     <%= f.label :languages %>
