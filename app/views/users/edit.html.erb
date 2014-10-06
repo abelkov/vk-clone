@@ -8,24 +8,26 @@
   <h1>Edit my profile</h1>
 <% end %>
 
-<div id="edit">
+<div id="edit_wrapper">
+  <div id="edit">
   <%= form_for(@user) do |f| %>
-    <%= render 'shared/error_messages' %>
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name %>
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name %>
-    <%= f.label :sex %>
-    <%= f.select :sex, SEX %>
-    <%= f.label :relationship %>
-    <%= f.select :relationship, RELATIONSHIP %>
-    <%= f.label :birthday %>
-    <%= f.date_select :birthday, order: [:month, :day, :year], start_year: 1900, end_year: Time.now.year - 6 %>
-    <%= f.label :hometown %>
-    <%= f.text_field :hometown %>
-    <%= f.label :languages %>
-    <%= f.text_field :languages, value: @user.languages.map(&:name).join(", ") %>
+  <%= render 'shared/error_messages' %>
+  <%= f.label :first_name %>
+  <%= f.text_field :first_name %>
+  <%= f.label :last_name %>
+  <%= f.text_field :last_name %>
+  <%= f.label :sex %>
+  <%= f.select :sex, SEX %>
+  <%= f.label :relationship %>
+  <%= f.select :relationship, RELATIONSHIP %>
+  <%= f.label :birthday, class: "group" %>
+  <%= f.date_select :birthday, { order: [:month, :day, :year], start_year: 1900, end_year: Time.now.year - 6 }, { class: "fl_l" } %>
+  <%= f.label :hometown %>
+  <%= f.text_field :hometown %>
+  <%= f.label :languages %>
+  <%= f.text_field :languages, value: @user.languages.map(&:name).join(", ") %>
 
-    <%= f.submit "Update profile", class: "btn btn-large btn-primary" %>
+  <%= f.submit "Update profile", class: "btn btn-large btn-primary" %>
   <% end %>
+  </div>
 </div>

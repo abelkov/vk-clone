@@ -222,12 +222,30 @@ html {
         }
 
         // Edit page
-        #edit {
-          margin: 0px auto;
-          padding: 10px 0;
-          width: 33%;
-          input[type="text"], input[type="password"], input[type="date"] {
-            height: 2.2em;
+        #edit_wrapper {
+          #edit {
+            margin: 0px auto;
+            padding: 10px 0;
+            width: 35%;
+            input[type="text"], input[type="password"], input[type="date"] {
+              height: 2.2em;
+            }
+
+            select {
+              width: 100%;
+            }
+
+            #user_birthday_2i {
+              width: 45%;
+              margin-right: 3%;
+            }
+            #user_birthday_3i {
+              width: 21%;
+              margin-right: 3%;
+            }
+            #user_birthday_1i {
+              width: 28%;
+            }
           }
         }
 

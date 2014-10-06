@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
-	before_action :require_login, only: [:edit, :settings, :update]
+	before_action :require_login, only: [:index, :edit, :settings, :update]
 	before_action :correct_user, only: [:update]
+
+	def index
+		@users = User.all
+	end
 
 	def show
 		@user = User.find(params[:id])
@@ -74,6 +78,7 @@ class UsersController < ApplicationController
 			end
 
 			@user.update basic_params
+			flash.now[:success] = "Your profile is updated" if @user.valid?
 			render 'edit'
 		end
 	end
@@ -94,7 +99,10 @@ private
 	end
 
 	def require_login
-		redirect_to root_url, notice: "Please sign in." unless signed_in?
+		unless signed_in?
+			store_location
+			redirect_to root_url, notice: "Please sign in."
+		end
 	end
 
 	def correct_user
